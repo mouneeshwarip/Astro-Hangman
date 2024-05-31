@@ -1,8 +1,12 @@
+import os
 import random
 print("Welcome to Astro Hangman Game")
 print("_ _ _ _ _ _ _")
-wordlist_level1=['Universe','Galaxy','Milkyway']
+wordlist_level1=['universe','galaxy','milkyway']
 
+##Clears the terminal
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 ##choose a random word from the list
 randomword=random.choice(wordlist_level1)
@@ -41,6 +45,7 @@ def printword(guessedletters):
             wrongletters.append(guess)
     return wrongletters  
 
+max_wrongguesses=6
 amount_of_timeswrong=0
 len_of_wordstoguess=len(randomword)
 current_guess_index=0
@@ -51,7 +56,11 @@ while(amount_of_timeswrong != 6 and current_letters_right != len_of_wordstoguess
     print("\n Letters Guessed so far: ")
     for letter in current_letters_guessed:
         print(letter, end=" ")
-    letterguessed=input("\n Guess a letter: ")
+    letterguessed=input("\n Guess a letter: ").lower() ##convert input to lower
+    ##check if the input is a valid alphabetical letter and the length of the letter
+    if not letterguessed.isalpha() or len(letterguessed) !=1:
+        print("Invalid input! Please enter an alphabetical letter.")
+        continue
     ##when the user is right
     if(randomword[current_guess_index] == letterguessed):
         print_fueldown(amount_of_timeswrong)
@@ -60,13 +69,15 @@ while(amount_of_timeswrong != 6 and current_letters_right != len_of_wordstoguess
         current_letters_right = printword(current_letters_guessed)
     ##when the user is wrong
     else:
-        print("here one bar battery down") 
         amount_of_timeswrong+=1
-        current_letters_guessed.append(letterguessed)   
+        current_letters_guessed.append(letterguessed) 
+        remaining_guesses=max_wrongguesses-amount_of_timeswrong
+        print(f"Wrong guess!! You are allowed to make {remaining_guesses} more wrong guesses")   
         print_fueldown(amount_of_timeswrong)
         current_letters_right = printword(current_letters_guessed)
 
-print("Game is over! Thank you for playing")
+print("\n sGame is over! Thank you for playing")
+print()
 
 
     
