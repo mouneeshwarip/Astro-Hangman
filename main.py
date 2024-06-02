@@ -11,8 +11,7 @@ def clear_terminal():
 ##choose a random word from the list
 randomword=random.choice(wordlist_level1)
 
-for x in randomword:
-    print("_", end=" ")
+print("\n" + "_ " * len(randomword))
 
 def print_fueldown(wrong):
     if(wrong==0):
