@@ -1,7 +1,7 @@
 import os
 import random
 print("Welcome to Astro Hangman Game")
-print("_ _ _ _ _ _ _")
+print("* * * * * * * * * * * * * * * * ")
 wordlist_level1=['universe','galaxy','milkyway']
 
 ##Clears the terminal
@@ -32,18 +32,12 @@ def print_fueldown(wrong):
 
 def printword(guessedletters):
     counter=0 ##index position
-    wrongletters=[]
     for char in randomword:
         if(char in guessedletters):
             print(randomword[counter], end=" ")
         else:
             print("_", end=" ") 
         counter+=1
-    ##keeping track of wrongly guessed letters
-    for guess in guessedletters:
-        if guess not in randomword:
-            wrongletters.append(guess)
-    return wrongletters  
 
 max_wrongguesses=6
 amount_of_timeswrong=0
@@ -76,7 +70,7 @@ while(amount_of_timeswrong != 6 and current_letters_right != len_of_wordstoguess
         print_fueldown(amount_of_timeswrong)
         current_letters_right = printword(current_letters_guessed)
 
-print("\n sGame is over! Thank you for playing")
+print("\n Game is over! Thank you for playing")
 print()
 
 
