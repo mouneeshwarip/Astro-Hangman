@@ -30,8 +30,19 @@ def choose_level():
                 print("Invalid input! Please enter 1, 2, or 3.")
         except ValueError:
             print("Invalid input! Please enter a number (1, 2, or 3).")
+level = choose_level() 
 
-level = choose_level()    
+# Setting word list and max wrong guesses based on chosen level
+if level == 1:
+    wordlist = wordlist_level1
+    max_wrongguesses = max_wrongguesses_level1
+elif level == 2:
+    wordlist = wordlist_level2
+    max_wrongguesses = max_wrongguesses_level2
+else:
+    wordlist = wordlist_level3
+    max_wrongguesses = max_wrongguesses_level3
+
 
 ##choose a random word from the list
 randomword=random.choice(wordlist_level1)
