@@ -43,7 +43,6 @@ else:
     wordlist = wordlist_level3
     max_wrongguesses = max_wrongguesses_level3
 
-
 ##choose a random word from the list
 randomword=random.choice(wordlist_level1)
 print("\n" + "_ " * len(randomword))
@@ -60,12 +59,11 @@ def printword(guessedletters):
         counter+=1
     return correct_letters    
 
-max_wrongguesses=6
 amount_of_timeswrong=0
 current_letters_guessed=[]
 current_letters_right=0
 
-while(amount_of_timeswrong != 6 and current_letters_right != len(randomword)):
+while(amount_of_timeswrong != max_wrongguesses and current_letters_right != len(randomword)):
     print("\n Letters Guessed so far: ")
     for letter in current_letters_guessed:
         print(letter, end=" ")
@@ -73,6 +71,9 @@ while(amount_of_timeswrong != 6 and current_letters_right != len(randomword)):
     ##check if the input is a valid alphabetical letter and the length of the letter
     if not letterguessed.isalpha() or len(letterguessed) !=1:
         print("Invalid input! Please enter an alphabetical letter.")
+        continue
+    if letterguessed in current_letters_guessed:
+        print("You already guessed that letter!")
         continue
     current_letters_guessed.append(letterguessed)  
 
@@ -85,7 +86,7 @@ while(amount_of_timeswrong != 6 and current_letters_right != len(randomword)):
         amount_of_timeswrong+=1
         remaining_guesses=max_wrongguesses-amount_of_timeswrong
         print(f"Wrong guess!! You are allowed to make {remaining_guesses} more wrong guesses")   
-        print_fueldown(amount_of_timeswrong)
+        print_fueldown(max_wrongguesses - amount_of_timeswrong)
         printword(current_letters_guessed)
 
 if current_letters_right == len(randomword):
