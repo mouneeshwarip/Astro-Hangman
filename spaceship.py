@@ -3,7 +3,34 @@ import os
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def print_spaceship(wrong):
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    RESET = '\033[0m'
+
+    spaceship = """
+     .'.
+    |o o|
+   _| = |_
+  |       |
+  |_______|
+    """
+
+    if wrong >= 6:
+        print(GREEN + spaceship + RESET)
+    elif wrong >= 4:
+        print(YELLOW + spaceship + RESET)
+    else:
+        print(RED + spaceship + RESET)
+    
+# Example usage
+print_fueldown(5)
+
 '''def print_fueldown(wrong):
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
     if(wrong==0):
         print("fuel full with green")
     elif(wrong==1):
@@ -21,7 +48,7 @@ def clear_terminal():
     '''    
 
 
-def print_fueldown(wrong):
+'''def print_fueldown(wrong):
     GREEN = '\033[92m'
     YELLOW = '\033[93m'
     RED = '\033[91m'
@@ -31,6 +58,7 @@ def print_fueldown(wrong):
        .'.
       |o o|
      _| = |_
+    |       |
     |       |
     |_______|
     """
@@ -46,3 +74,4 @@ def print_fueldown(wrong):
     }
 
     print(spaceship[wrong])
+    '''

@@ -1,6 +1,7 @@
 import os
 import random
-from spaceship import print_fueldown, clear_terminal
+from spaceship import print_spaceship, clear_terminal
+port = os.environ.get('PORT', 5000)
 
 print("Welcome to Astro Hangman Game")
 print("* * * * * * * * * * * * * * * * ")
@@ -79,14 +80,14 @@ while(amount_of_timeswrong != max_wrongguesses and current_letters_right != len(
 
     ##when the user is right
     if letterguessed in randomword:
-        print_fueldown(amount_of_timeswrong)
+        print_spaceship(amount_of_timeswrong)
         current_letters_right =printword(current_letters_guessed)
     ##when the user is wrong
     else:
         amount_of_timeswrong+=1
         remaining_guesses=max_wrongguesses-amount_of_timeswrong
         print(f"Wrong guess!! You are allowed to make {remaining_guesses} more wrong guesses")   
-        print_fueldown(max_wrongguesses - amount_of_timeswrong)
+        print_spaceship(remaining_guesses)
         printword(current_letters_guessed)
 
 if current_letters_right == len(randomword):
