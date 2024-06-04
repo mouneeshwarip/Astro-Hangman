@@ -23,7 +23,7 @@ def clear_terminal():
 def choose_level():
     while True:
         try:
-            level = int(input("Which level would you like to play? Choose 1, 2, or 3: "))
+            level = int(input("Which level would you like to play? Choose 1, 2, or 3: \n"))
             if level in [1, 2, 3]:
                 return level
             else:
@@ -67,7 +67,7 @@ while(amount_of_timeswrong != max_wrongguesses and current_letters_right != len(
     print("\n Letters Guessed so far: ")
     for letter in current_letters_guessed:
         print(letter, end=" ")
-    letterguessed=input("\n Guess a letter: ").lower() ##convert input to lower
+    letterguessed=input("\n Guess a letter: \n").lower() ##convert input to lower
     ##check if the input is a valid alphabetical letter and the length of the letter
     if not letterguessed.isalpha() or len(letterguessed) !=1:
         print("Invalid input! Please enter an alphabetical letter.")
