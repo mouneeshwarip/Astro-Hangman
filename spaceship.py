@@ -17,15 +17,15 @@ def print_spaceship(wrong):
   |_______|
     """
 
-    if wrong >= 6:
+    if wrong >= 5:
         print(GREEN + spaceship + RESET)
-    elif wrong >= 4:
+    elif wrong >= 3:
         print(YELLOW + spaceship + RESET)
     else:
         print(RED + spaceship + RESET)
+   
+        
     
-# Example usage
-print_fueldown(5)
 
 '''def print_fueldown(wrong):
     GREEN = '\033[92m'

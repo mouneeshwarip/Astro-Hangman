@@ -80,7 +80,6 @@ while(amount_of_timeswrong != max_wrongguesses and current_letters_right != len(
 
     ##when the user is right
     if letterguessed in randomword:
-        print_spaceship(amount_of_timeswrong)
         current_letters_right =printword(current_letters_guessed)
     ##when the user is wrong
     else:
