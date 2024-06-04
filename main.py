@@ -19,12 +19,20 @@ max_wrongguesses_level3 = 4
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# Choosing the level
+def choose_level():
+    while True:
+        try:
+            level = int(input("Which level would you like to play? Choose 1, 2, or 3: "))
+            if level in [1, 2, 3]:
+                return level
+            else:
+                print("Invalid input! Please enter 1, 2, or 3.")
+        except ValueError:
+            print("Invalid input! Please enter a number (1, 2, or 3).")
 
+level = choose_level()    
 
- 
- 
- 
- 
 ##choose a random word from the list
 randomword=random.choice(wordlist_level1)
 print("\n" + "_ " * len(randomword))
