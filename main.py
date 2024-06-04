@@ -1,51 +1,52 @@
 import os
 import random
+from spaceship import print_fueldown, clear_terminal
+
 print("Welcome to Astro Hangman Game")
 print("* * * * * * * * * * * * * * * * ")
-wordlist_level1=['universe','galaxy','milkyway']
 
-##Clears the terminal
+# word lists for different levels
+wordlist_level1 = ['universe', 'galaxy', 'milkyway', 'planet', 'star', 'comet']
+wordlist_level2 = ['astronaut', 'telescope', 'satellite', 'nebula', 'orbit', 'gravity']
+wordlist_level3 = ['constellation', 'interstellar', 'microgravity',  'blackhole', 'exoplanet', 'quasar']
+
+# maximum wrong guesses for different levels
+max_wrongguesses_level1 = 6
+max_wrongguesses_level2 = 5
+max_wrongguesses_level3 = 4
+
+# Clears the terminal
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
+
+ 
+ 
+ 
+ 
 ##choose a random word from the list
 randomword=random.choice(wordlist_level1)
-
 print("\n" + "_ " * len(randomword))
-
-def print_fueldown(wrong):
-    if(wrong==0):
-        print("fuel full with green")
-    elif(wrong==1):
-        print("fuel one point down with g")
-    elif(wrong==2):
-        print("fuel two points down with g")   
-    elif(wrong==3):
-        print("fuel three points down with yell")   
-    elif(wrong==4):
-        print("fuel four points down with y")   
-    elif(wrong==5):
-        print("fuel five points down with red")   
-    elif(wrong==1):
-        print("fuel six points down with r") 
 
 def printword(guessedletters):
     counter=0 ##index position
+    correct_letters=0
     for char in randomword:
         if(char in guessedletters):
             print(randomword[counter], end=" ")
+            correct_letters +=1
         else:
             print("_", end=" ") 
         counter+=1
+    return correct_letters    
 
 max_wrongguesses=6
 amount_of_timeswrong=0
-len_of_wordstoguess=len(randomword)
-current_guess_index=0
 current_letters_guessed=[]
 current_letters_right=0
 
-while(amount_of_timeswrong != 6 and current_letters_right != len_of_wordstoguess):
+while(amount_of_timeswrong != 6 and current_letters_right != len(randomword)):
     print("\n Letters Guessed so far: ")
     for letter in current_letters_guessed:
         print(letter, end=" ")
@@ -54,24 +55,25 @@ while(amount_of_timeswrong != 6 and current_letters_right != len_of_wordstoguess
     if not letterguessed.isalpha() or len(letterguessed) !=1:
         print("Invalid input! Please enter an alphabetical letter.")
         continue
+    current_letters_guessed.append(letterguessed)  
+
     ##when the user is right
-    if(randomword[current_guess_index] == letterguessed):
+    if letterguessed in randomword:
         print_fueldown(amount_of_timeswrong)
-        current_guess_index+=1
-        current_letters_guessed.append(letterguessed)  
-        current_letters_right = printword(current_letters_guessed)
+        current_letters_right =printword(current_letters_guessed)
     ##when the user is wrong
     else:
         amount_of_timeswrong+=1
-        current_letters_guessed.append(letterguessed) 
         remaining_guesses=max_wrongguesses-amount_of_timeswrong
         print(f"Wrong guess!! You are allowed to make {remaining_guesses} more wrong guesses")   
         print_fueldown(amount_of_timeswrong)
-        current_letters_right = printword(current_letters_guessed)
+        printword(current_letters_guessed)
 
-print("\n Game is over! Thank you for playing")
-print()
-
+if current_letters_right == len(randomword):
+    print("\nCongratulations! You guessed the word:", randomword)
+else:
+    print("\nGame is over! The word was:", randomword)
+    print("Thank you for playing!")
 
     
             
