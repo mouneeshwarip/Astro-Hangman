@@ -1,9 +1,11 @@
 import os
 import random
-from colorama import Fore, Style
+from colorama import Fore, Style, init
 from spaceship import print_spaceship, clear_terminal
 from intro import display_logo, display_rules
 port = os.environ.get('PORT', 5000)
+# Initialize colorama
+init()
 
 # Display the logo and rules
 display_logo()
@@ -27,7 +29,7 @@ def clear_terminal():
 def choose_level():
     while True:
         try:
-            level = int(input("Which level would you like to play? Choose 1, 2, or 3: \n"))
+            level = int(input("Which level would you like to play? Choose 1, 2, or 3:  \n"))
             if level in [1, 2, 3]:
                 return level
             else:
@@ -50,6 +52,15 @@ else:
 ##choose a random word from the list
 randomword=random.choice(wordlist_level1)
 print("\n" + "_ " * len(randomword))
+print("\nGuess this word correctly and travel to space with our spaceship")
+print(f""" {Fore.GREEN}
+     .'.  
+    |o o|
+   _| = |_
+  |       |
+  |_______|
+
+  Battery-level : |||||| <---- This indicates the battery level of the spaceship. Finish the game before exhausting the battery. {Style.RESET_ALL}""")   
 
 def printword(guessedletters):
     counter=0 ##index position
@@ -66,12 +77,25 @@ def printword(guessedletters):
 amount_of_timeswrong=0
 current_letters_guessed=[]
 current_letters_right=0
+# Flag to control the execution of "Letters Guessed so far" print statement
+first_iteration = True
 
 while(amount_of_timeswrong != max_wrongguesses and current_letters_right != len(randomword)):
+    '''
     print("\n Letters Guessed so far: ")
     for letter in current_letters_guessed:
         print(letter, end=" ")
     letterguessed=input("\n Guess a letter: \n").lower() ##convert input to lower
+    '''
+    if not first_iteration:
+        print("\n Letters Guessed so far: ")
+        for letter in current_letters_guessed:
+            print(letter, end=" ")
+    else:
+        first_iteration = False
+
+    letterguessed = input("\n Guess a letter: \n").lower()  # Convert input to lower
+
     ##check if the input is a valid alphabetical letter and the length of the letter
     if not letterguessed.isalpha() or len(letterguessed) !=1:
         print("Invalid input! Please enter an alphabetical letter.")
