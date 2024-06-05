@@ -1,4 +1,4 @@
-import colorama
+
 from colorama import Fore, Style
 
 def display_logo():
