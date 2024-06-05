@@ -28,6 +28,7 @@ def print_spaceship(level,wrong):
 
   Battery-level : 0    
     """
+    
     if level == 1:
         if wrong >= 5:
             print(GREEN + spaceship + RESET)
