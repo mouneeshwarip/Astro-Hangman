@@ -112,3 +112,7 @@ Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` f
 ---
 
 Happy coding!
+
+
+**AScii art for logo**  <a href="https://patorjk.com/software/taag/#p=display&h=0&f=Big%20Money-ne&t=Astro%20Hangman"
+

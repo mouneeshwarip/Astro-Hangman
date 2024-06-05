@@ -4,26 +4,61 @@ from colorama import Fore, Style
 def display_logo():
     logo = f"""
 {Fore.CYAN}
-__        __   _                            _          _   _             
-\\ \\      / /__| | ___ ___  _ __ ___   ___  | |_ ___   | | | | __ _ _ __  
- \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ \\  | |_| |/ _` | '_ \\ 
-  \\ V  V /  __/ | (_| (_) | | | | | |  __/ | || (_) | |  _  | (_| | | | |
-   \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/  |_| |_|\\__,_|_| |_|
-{Style.RESET_ALL}
+  
+  /$$$$$$              /$$                               /$$   /$$                                                                
+ /$$__  $$            | $$                              | $$  | $$                                                                
+| $$  \ $$  /$$$$$$$ /$$$$$$    /$$$$$$   /$$$$$$       | $$  | $$  /$$$$$$  /$$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$  /$$$$$$$ 
+| $$$$$$$$ /$$_____/|_  $$_/   /$$__  $$ /$$__  $$      | $$$$$$$$ |____  $$| $$__  $$ /$$__  $$| $$_  $$_  $$ |____  $$| $$__  $$
+| $$__  $$|  $$$$$$   | $$    | $$  \__/| $$  \ $$      | $$__  $$  /$$$$$$$| $$  \ $$| $$  \ $$| $$ \ $$ \ $$  /$$$$$$$| $$  \ $$
+| $$  | $$ \____  $$  | $$ /$$| $$      | $$  | $$      | $$  | $$ /$$__  $$| $$  | $$| $$  | $$| $$ | $$ | $$ /$$__  $$| $$  | $$
+| $$  | $$ /$$$$$$$/  |  $$$$/| $$      |  $$$$$$/      | $$  | $$|  $$$$$$$| $$  | $$|  $$$$$$$| $$ | $$ | $$|  $$$$$$$| $$  | $$
+|__/  |__/|_______/    \___/  |__/       \______/       |__/  |__/ \_______/|__/  |__/ \____  $$|__/ |__/ |__/ \_______/|__/  |__/
+                                                                                       /$$  \ $$                                  
+                                                                                      |  $$$$$$/                                  
+                                                                                       \______/                                   
+            
+
+{Fore.YELLOW}{Style.BRIGHT}*** Welcome to the Astro Hangman Game! ***
+{Style.RESET_ALL}                                                                                                 
 """
     print(logo)
 # function to display rules
+'''
 def display_rules():
     rules = f"""
-{Fore.YELLOW}Welcome to Astro Hangman Game!{Style.RESET_ALL}
-{Fore.GREEN}
-Rules:
-1. Choose a difficulty level: 1, 2, or 3.
-2. You will be given a word related to space.
-3. Guess the word one letter at a time.
-4. You can make a limited number of wrong guesses based on the chosen level.
-5. The spaceship's battery level will indicate your remaining guesses.
-6. Guess the word before you run out of guesses to win the game!
-{Style.RESET_ALL}
+{Fore.GREEN}Rules:{Style.RESET_ALL}
+1. Choose a level to play: 1, 2, or 3.
+2. Guess the letters to complete the word.
+3. You have a limited number of wrong guesses based on the level.
+4. Each wrong guess reduces the spaceship's battery level.
+5. Try to guess the word before the battery runs out!
 """
     print(rules)
+    '''
+def display_rules():
+    '''
+    Requesting user to provide input whether
+    user wants to read the game rules.
+    '''
+    while True:
+        try:
+            user_input = input("Do you want to read the rules?(Y/N)\n").lower()
+            if user_input == 'y':
+                print(f"""
+                {Fore.GREEN}Rules:{Style.RESET_ALL}
+
+                 1. Choose a level to play: 1, 2, or 3.
+                 2. Guess the letters to complete the word.
+                 3. You have a limited number of wrong guesses based on the level.
+                 4. Each wrong guess reduces the spaceship's battery level.
+                 5. Try to guess the word before the battery runs out!\n
+                 """)
+                return True
+                print(rules)
+            elif user_input == 'n':
+                print("Okay!, Lets Start!")
+                return False
+            else:
+                raise ValueError
+        except ValueError:
+            typewriter_effects("Invalid choice: Please enter 'Y' or 'N'.\n")
