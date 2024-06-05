@@ -1,6 +1,7 @@
 import os
 import random
 from spaceship import print_spaceship, clear_terminal
+from intro import display_logo, display_rules
 port = os.environ.get('PORT', 5000)
 
 print("Welcome to Astro Hangman Game")
