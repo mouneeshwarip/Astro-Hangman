@@ -1,11 +1,11 @@
 import os
 import random
-from colorama import Fore, Style, init
+from colorama import Fore, Style
 from spaceship import print_spaceship, clear_terminal
 from intro import display_logo, display_rules
 port = os.environ.get('PORT', 5000)
 # Initialize colorama
-init()
+
 
 # Display the logo and rules
 display_logo()
